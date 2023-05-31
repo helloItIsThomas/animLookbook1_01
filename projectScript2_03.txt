@@ -1,0 +1,19 @@
+
+perhaps i should make a parentGrid that resizes itself to the current scope,
+so I can always know how to position and size things.
+
+Everything needs to be downstream of the parentGrid.
+
+I think (???)
+camAnim.z can perhaps be seen as the master zoom value?
+and so whenever camAnim.z finishes changing,
+parentGrid.update should be ran once?
+
+now I need to be able to anticipate how the camera is going to act
+
+
+
+
+i should make a function where when you call it,
+it returns a flattened list of rectangles.
+

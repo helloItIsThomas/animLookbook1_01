@@ -1,0 +1,72 @@
+
+FUNCTION_A_NOTES [
+    one = each cell's x, y, w, h, firstPixelHSB and firstPixelBrightness, as well as a circle object with a method to calculate mappedWidth and mappedHeight.
+    // each cell 's x, y, w, h, firstPixelHSB and firstPixelBrightness will be const. the circle object's width and height will be var, set to this.w and this.h
+    functionA(flowerImg.x, flowerImg.y, flowerImg.w, flowerImg.H){
+        return grid: List<List<CustRect>>
+    }
+]
+
+FUNCTION_B_NOTES [
+    // functionB takes the chosen cell as an argument, runs its circle objects's method. this calculates a new width and height, and sets them to the circle.
+    it also draws a non-interactive grid over the chosen cell.
+    it also updates to the new color of the circle.
+    // the calculation of width and height is this:
+    myCell.circle.update(myCell.fpHSB);
+    update(_hsb){
+        this.w = hsb.map2(0.0, maxhsb, 0.0, maxWidth)
+    }
+]
+
+GRAPHS_PANEL_NOTES [
+    // the graphs panel takes in cellSelection.HSB, cellSelection.circle.mappedW, cellSelection.circle.mappedH, cellSelection.maxBright, cellSelection.maxWidth
+    // the graphs panel should be an object or a class instance. let's try object.
+    // graphPanel should have an update method and draw method.
+    // update should fire once at the beginning of Scene 3, and again every time the user hovers over another cell in Scene 4.
+    // update is just to update what is being graphed as new input comes in.
+    // graphPanel should not be reassigning values, it should be downstream of everything.
+]
+
+THE MAIN, SEPARATE, THINGS ARE [
+    functionA: returns: gridA
+    class CustRect {FUNCTION_A_NOTES.one}
+    gridA: List<List<CustRect>>
+    functionB(gridA.givenCell): runs input's updateMethod + drawGridMethod
+    const graphsPanel = {
+        updateMethod: function(){}
+        drawSelfMethod: function(){}
+    }
+]
+
+SCENE_STRUCTURE [
+    SCENE 1
+    imageOfFlower
+    functionA(imageOfFlower)
+    gridA
+    activate zoomAnimation
+    SCENE 2
+    nestedListOfCells = functionA(flowerImg)
+    userClick on cellSelection -> functionB(cellSelection)
+    SCENE 3
+    cellSelection.circle.updateDrawing (new width + fill)
+    (showGraph)
+    graphPanel.update(cellSelection)
+    SCENE 4
+    zoom out
+    for each (cell in nestedListOfCells){
+        functionB(cell)
+        cell.circle.updateDrawing (new width + fill)
+    }
+    for each (cell in nestedListOfCells){
+        cell.listen(hover){
+            graphPanel.update(cell)
+        }
+    }
+    SCENE 5
+    duplicate gridA (layer the circles)
+    duplicate graphPanel (stack underneath original)
+]
+
+
+
+

@@ -1,0 +1,88 @@
+
+good morning :)
+
+
+I think I need a class for individual graphs.
+I also should probably figure out the logic for the camera now. At some point I should design the timeline logic as well.
+I also need to make sure the logic for current cell selection is solid. This is part of the graph class methinks. This means that there should only be one cell selected at a time.
+
+
+TO — DO
+°    Summarize existing structure
+Graph class design
+Current Cell Selection design
+Camera design
+Timeline design
+
+
+The existing things are:
+parentGrid,
+gridA,
+customRect, customRect.circle,
+graphsPanel,
+functionA, functionB.
+
+parentGrid is an object
+    it has a method for
+        update [runs on windowResized + setup]
+            dim = window.width, window.height
+        drawSelf
+
+gridA [flatGridA] is the main grid [set of custRect]
+    is set in setup according to poppy.dim
+    poppy.dim = window.width / window.height
+
+customRect is a class
+    uses functionA args for dim, pos.
+    has a circle object with methods
+        calcSize
+        drawCirc
+        drawDumbGrid
+        checkMouse
+
+graphsPanel is an object
+    it uses parentGrid for pos, w, h.
+    it has a method for
+        update [runs on windowResized + setup]
+        drawSelf
+
+functionA makes customRects and returns grids.
+functionB takes in a customRect.circle,
+    and runs its calcSize method.
+    The calcSize calcs and sets new size.
+
+
+GRAPH CLASS DESIGN
+the graph class should use the graphsPanel as ref
+    2 cols 1 row by default built in.
+GraphClass should take w, h, x, y as args?
+    from graphsPanel.
+where should the graphs be stored?
+maybe in graphsPanel? as a list?
+
+graphsPanel can be a haveChildren method that creates a graph and pushes it to the list. The length of this list can be the counter of children.
+
+class Graph{
+    constructor(){
+        graphsPanel.w
+        graphsPanel.children.size
+    }
+}
+graphsPanel = {
+    children[],
+    haveChild(){
+        children.push(new Graph());
+    }
+}
+
+we don't need a haveChild method, because all
+graphPanels will always have 2 graphs in the same relative positions.
+we could probably just have two graph objects that are hard coded in.
+maybe the GraphsPanel has a method that takes the current selection as an argument, and updates the currentBrightness and currentWidth.
+
+how to update the pos + size of the graphs? 
+
+
+
+
+

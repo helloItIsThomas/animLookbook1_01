@@ -1,0 +1,24 @@
+
+now I would like to adjust all circle width to match their color.
+
+right now functionA is populating the color and brightness
+with filler values.
+
+I think functionA should take an aditional, optional argument for an image.
+If the image argument !null,
+then get the brightness and rgb value from the first pixel.
+
+hovering over a given cell should update the width and color of circGraph in each GraphsPanel object.
+
+so i think hovering over a circle should update a global variable to the currentID.
+
+all is good
+
+hopefully everything is encapsulated enough so when I duplicate graphPanels and gridA, nothing leaks.
+I think my odds are decent.
+
+now i want to send the mouse to the center of each square
+when it hovers over said square.
+
+Let's first replace the mouse
+
